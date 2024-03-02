@@ -1,24 +1,20 @@
-import { test, Page, expect } from "@playwright/test";
-import { LoginPage } from "../page-objects/loginPage";
-import { HomePage } from "../page-objects/homePage";
+import { test, expect } from "../page-objects/pageobjectManager";
+
 
 test.describe("sauceDemo tests", async () => {
-  test.beforeEach("login to sauceDemo", async ({ page }) => {
+  test.beforeEach("login to sauceDemo", async ({ page, loginPage }) => {
     await page.goto("https://www.saucedemo.com/");
     await page.waitForLoadState();
-    const loginPage = new LoginPage(page);
     await loginPage.doLogin("standard_user", "secret_sauce");
     expect(page.url()).toBe("https://www.saucedemo.com/inventory.html");
   });
 
-  test("add to cart", async ({ page }) => {
-    const homePage = new HomePage(page);
+  test("add to cart", async ({ homePage }) => {
     await homePage.addToCart();
     await expect(homePage.cartItems).toHaveText("1");
   });
 
-  test("remove from cart", async ({ page }) => {
-    const homePage = new HomePage(page);
+  test("remove from cart", async ({homePage }) => {
     await homePage.addToCart();
     await expect(homePage.cartItems).toHaveText("1");
     await homePage.removeFromCart();

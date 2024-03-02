@@ -1,30 +1,30 @@
-import {Page} from '@playwright/test';
-import {HamburgerMenu} from './hamBurgerPage';
-import {LoginPage} from './loginPage';
-import { HomePage } from './homePage';
+import {test as base} from "@playwright/test";
+import { HamburgerMenu } from "./hamBurgerPage";
+import { HomePage } from "./homePage";
+import { LoginPage } from "./loginPage";
 
-export class PageObjectManager{
-    readonly page:Page;
-    public hamburgerMenu:HamburgerMenu;
-    public loginPage: LoginPage;
-    public homePage: HomePage;
-
-    constructor(page:Page){
-        this.page = page;
-        this.hamburgerMenu = new HamburgerMenu(this.page);
-        this.loginPage = new LoginPage(this.page);
-        this.homePage = new HomePage(this.page)
-    }
-
-    async getHomePage(){
-        return this.homePage;
-    }
-
-    async getLoginPage(){
-        return this.loginPage;
-    }
-
-    async getHamburgerMenu(){
-        return this.hamburgerMenu;
-    }
+type pageObjects = {
+    hamBurgerMenu: HamburgerMenu;
+    homePage:HomePage;
+    loginPage: LoginPage
 }
+
+
+export const test = base.extend<pageObjects>({
+    hamBurgerMenu: async({page}, use)=>{
+        const hamBurgerMenu = new HamburgerMenu(page);
+        use(hamBurgerMenu);
+    },
+
+    homePage: async({page}, use)=>{
+        const homePage = new HomePage(page);
+        use(homePage);
+    },
+
+    loginPage: async({page}, use)=>{
+        const loginPage = new LoginPage(page);
+        use(loginPage);
+    }
+})
+
+export const expect = test.expect;
