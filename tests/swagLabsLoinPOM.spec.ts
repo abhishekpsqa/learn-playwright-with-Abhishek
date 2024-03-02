@@ -1,7 +1,7 @@
 import { test, expect } from "../page-objects/pageobjectManager";
 
 
-test.describe("sauceDemo tests", async () => {
+test.describe("sauceDemo tests", () => {
   test.beforeEach("login to sauceDemo", async ({ page, loginPage }) => {
     await page.goto("https://www.saucedemo.com/");
     await page.waitForLoadState();

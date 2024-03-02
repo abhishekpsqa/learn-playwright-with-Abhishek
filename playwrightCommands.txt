@@ -1,0 +1,42 @@
+npm init playwright@latest
+    - to install playwright
+
+npm install -D @playwright/test@latest
+    - to update existing playwright
+
+npx playwright install --with-deps
+    - to install latest browsers
+
+npx playwright tests
+    - to run all the tests in the specified folder
+
+npx playwright test tests/${nameOfTest.spec.ts}
+    - to run tests in specific spec file
+
+npx playwright test tests/${nameOfTest.spec.ts} tests/${nameOfTest.spec.ts}
+    - to run tests from multiple spec files.
+
+npx playwright test radioButton
+    - to run all the tests in spec file that contains name "radioButton"
+
+npx playwright test autowaiting.spec.ts:20
+    - to run tests that are in line 20 of mentioned spec file
+
+npx playwright test -g "click on green button"
+    - to run test with name click on green button
+
+npx playwright test --headed 
+    - to run test in headed mode
+
+npx playwright test project=chromium
+    - to run test on only chrome browsers
+
+npx playwright test --worker=1
+    - to disable parallel test execution
+
+npx playwright test --debug
+    - to run test in debug mode
+
+npx playwright test --ui
+    - to run test in ui mode
+
