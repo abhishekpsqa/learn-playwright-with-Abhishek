@@ -7,6 +7,9 @@ npm install -D @playwright/test@latest
 npx playwright install --with-deps
     - to install latest browsers
 
+npx playwright codegen
+    - to open codegen tool
+
 npx playwright tests
     - to run all the tests in the specified folder
 
@@ -37,4 +40,7 @@ npx playwright test --debug
 
 npx playwright test --ui
     - to run test in ui mode
+
+npx playwright show-report
+    -to open report
 
